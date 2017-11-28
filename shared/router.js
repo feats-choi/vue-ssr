@@ -6,7 +6,7 @@ Vue.use(Router);
 export default () => new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: () => import('/shared/components/Home') },
+    { path: '/', component: () => import('/shared/components/Top') },
     { path: '/book/:id', component: () => import('/shared/components/Book') }
   ]
 })

@@ -1,17 +1,20 @@
 import express from 'express';
-import template from './index.template.html';
-import createApp from '/built/server-bundle';
-import ssrRenderer from 'vue-ssr-renderer';
+import fs from 'fs';
+import { createBundleRenderer } from 'vue-server-renderer';
+import clientManifest from '/built/manifest.json';
 
 const server = express();
-const renderer = ssrRenderer.createRenderer();
+const template = fs.readFileSync('./index.template.html', 'utf-8');
+const renderer = createBundleRenderer('/built/server-bundle.json', {
+  runInNewContext: false,
+  template,
+  clientManifest
+});
 
 server.get('*', (req, res) => {
   const context = { url: req.url };
 
-  createApp(context).then(app => {
-    renderer.renderToString(app)
-      .then(html => res.end(html))
-      .catch(err => res.status(err.code).end());
-  });
+  renderer.renderToString(context)
+    .then(html => res.end(html))
+    .catch(err => res.status(err.code).end());
 });
