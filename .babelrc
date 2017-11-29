@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "env",
+    "vue"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "syntax-async-functions",
+    "transform-regenerator"
+  ]
+}
