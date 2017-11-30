@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const ROOT_DIR = '../';
+const ROOT_DIR = path.resolve(__dirname, '..');
 export const CLIENT_DIR = path.resolve(ROOT_DIR, 'client');
 export const SERVER_DIR = path.resolve(ROOT_DIR, 'server');
 export const SHARED_DIR = path.resolve(ROOT_DIR, 'shared');
@@ -36,19 +36,5 @@ export default {
       shared: SHARED_DIR,
       built: BUILT_DIR
     }
-  },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vender',
-      minChunks: function(module){
-        return /node_modules/.test(module.context) && !/\.css$/.test(module.request)
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    }),
-    new ExtractTextPlugin({
-      filename: 'common.[chunkhash].css'
-    })
-  ]
+  }
 }

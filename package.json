@@ -6,8 +6,8 @@
   "scripts": {
     "start": "run-s clean build run",
     "build": "run-p build-server build-client",
-    "build-server": "webpack --progress --colors --config webpack/server.js",
-    "build-client": "webpack --progress --colors --config webpack/client.js",
+    "build-server": "webpack --progress --colors --config webpack/server.babel.js",
+    "build-client": "webpack --progress --colors --config webpack/client.babel.js",
     "run": "node server/index.babel.js",
     "clean": "rimraf built/"
   },

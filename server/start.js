@@ -1,11 +1,11 @@
 import express from 'express';
 import fs from 'fs';
 import { createBundleRenderer } from 'vue-server-renderer';
-import clientManifest from '/built/manifest.json';
+import clientManifest from 'built/manifest.json';
 
 const server = express();
 const template = fs.readFileSync('./index.template.html', 'utf-8');
-const renderer = createBundleRenderer('/built/server-bundle.json', {
+const renderer = createBundleRenderer('built/server-bundle.json', {
   runInNewContext: false,
   template,
   clientManifest

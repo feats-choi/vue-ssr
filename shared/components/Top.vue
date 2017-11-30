@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import bookModule from '/shared/store/bookModule';
+import bookModule from 'shared/store/bookModule';
 
 export default {
     asyncData({ store }){

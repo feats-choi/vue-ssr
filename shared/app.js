@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import App from '/shared/App';
-import createRouter from '/shared/router';
-import createStore from '/shared/store';
+import App from 'shared/App';
+import createRouter from 'shared/router';
+import createStore from 'shared/store';
 import { sync } from 'vuex-router-sync';
 
 export default () => {

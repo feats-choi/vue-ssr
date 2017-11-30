@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { clientTitleMixin } from '/shared/mixin/title';
+import { clientTitleMixin } from 'shared/mixin/title';
 
 export default {
     mixins: [clientTitleMixin],

@@ -3,7 +3,7 @@
  */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { fetchItem } from '/shared/help/api';
+import { fetchItem } from 'shared/help/api';
 
 Vue.use(Vuex);
 

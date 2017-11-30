@@ -1,4 +1,4 @@
-import createApp from '/shared/app';
+import createApp from 'shared/app';
 
 const { app, router, store } = createApp();
 

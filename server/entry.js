@@ -1,4 +1,4 @@
-import createApp from '/shared/app';
+import createApp from 'shared/app';
 
 export default context => new Promise((resolve, reject) => {
   const { app, router, store } = createApp();
