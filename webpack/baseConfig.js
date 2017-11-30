@@ -1,7 +1,15 @@
 import webpack from 'webpack';
+import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
+const ROOT_DIR = '../';
+const CLIENT_DIR = path.resolve(ROOT_DIR, 'client');
+const SERVER_DIR = path.resolve(ROOT_DIR, 'server');
+const SHARED_DIR = path.resolve(ROOT_DIR, 'shared');
+const BUILT_DIR = path.resolve(ROOT_DIR, 'built');
+
 export default {
+  context: ROOT_DIR,
   module: {
     rules: [
       {
@@ -19,6 +27,15 @@ export default {
         })
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', 'json', '.vue'],
+    alias: {
+      client: CLIENT_DIR,
+      server: SERVER_DIR,
+      shared: SHARED_DIR,
+      built: BUILT_DIR
+    }
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
