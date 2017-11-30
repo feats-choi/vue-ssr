@@ -2,17 +2,16 @@ import merge from 'webpack-merge';
 import nodeExternals from 'webpack-node-externals';
 import baseConfig from './baseConfig.js';
 import VueSSRServerPlugin from 'vue-server-renderer/server-plugin';
+import { SERVER_DIR, BUILT_DIR } from './baseConfig.js';
 
 export default merge(baseConfig, {
-  entry: './server/entry.js',
-  target: 'node',
-  devtool: 'source-map',
+  entry: `${SERVER_DIR}/entry.js`,
   output: {
-    libraryTarget: 'commonjs2'
+    path: `${BUILT_DIR}/server`,
+    filename: `[name].[hash].js`
   },
-  externals: nodeExternals({
-    whitelist: /\.css$/
-  }),
+  target: 'node',
+  externals: nodeExternals(),
   plugins: [
     new VueSSRServerPlugin()
   ]

@@ -3,10 +3,10 @@ import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const ROOT_DIR = '../';
-const CLIENT_DIR = path.resolve(ROOT_DIR, 'client');
-const SERVER_DIR = path.resolve(ROOT_DIR, 'server');
-const SHARED_DIR = path.resolve(ROOT_DIR, 'shared');
-const BUILT_DIR = path.resolve(ROOT_DIR, 'built');
+export const CLIENT_DIR = path.resolve(ROOT_DIR, 'client');
+export const SERVER_DIR = path.resolve(ROOT_DIR, 'server');
+export const SHARED_DIR = path.resolve(ROOT_DIR, 'shared');
+export const BUILT_DIR = path.resolve(ROOT_DIR, 'built');
 
 export default {
   context: ROOT_DIR,
