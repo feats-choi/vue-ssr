@@ -11,20 +11,20 @@
 </template>
 
 <script>
-import bookModule from 'shared/store/bookModule';
+//import bookModule from 'shared/store/bookModule';
 
 export default {
-    asyncData({ store }){
-        store.registerModule('book', bookModule);
-        return store.dispatch('book/fetchBookList');
-    },
-    destroyed(){
-        this.$store.unregisterModule('book');
-    },
-    computed: {
-        bookCount(){
-            return this.$store.state.book.count;
-        }
-    }
+//    asyncData({ store }){
+//        store.registerModule('book', bookModule);
+//        return store.dispatch('book/fetchBookList');
+//    },
+//    destroyed(){
+//        this.$store.unregisterModule('book');
+//    },
+//    computed: {
+//        bookCount(){
+//            return this.$store.state.book.count;
+//        }
+//    }
 }
 </script>

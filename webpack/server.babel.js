@@ -8,12 +8,13 @@ export default merge(baseConfig, {
   entry: `${SERVER_DIR}/entry.js`,
   output: {
     path: `${BUILT_DIR}/server`,
-    filename: `[name].[hash].js`,
     libraryTarget: 'commonjs2'
   },
   target: 'node',
   externals: nodeExternals(),
   plugins: [
-    new VueSSRServerPlugin()
+    new VueSSRServerPlugin({
+      filename: 'index.json'
+    })
   ]
 })

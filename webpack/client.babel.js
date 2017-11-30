@@ -10,8 +10,7 @@ export default merge(baseConfig, {
     app: ['babel-polyfill', `${CLIENT_DIR}/entry.js`]
   },
   output: {
-    path: `${BUILT_DIR}/client`,
-    filename: `[name].[hash].js`
+    path: `${BUILT_DIR}/client`
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -25,8 +24,10 @@ export default merge(baseConfig, {
       minChunks: Infinity
     }),
     new ExtractTextPlugin({
-      filename: 'common.[chunkhash].css'
+      filename: 'common.css'
     }),
-    new VueSSRClientPlugin()
+    new VueSSRClientPlugin({
+      filename: 'index.json'
+    })
   ]
 })
