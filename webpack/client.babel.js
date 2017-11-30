@@ -6,7 +6,9 @@ import VueSSRClientPlugin from 'vue-server-renderer/client-plugin';
 import { CLIENT_DIR, BUILT_DIR } from './baseConfig.js';
 
 export default merge(baseConfig, {
-  entry: ['babel-polyfill', `${CLIENT_DIR}/entry.js`],
+  entry: {
+    app: ['babel-polyfill', `${CLIENT_DIR}/entry.js`]
+  },
   output: {
     path: `${BUILT_DIR}/client`,
     filename: `[name].[hash].js`
