@@ -1,30 +1,25 @@
 <template>
-    <div>
-        <h1>Bookリスト</h1>
-        <ul>
-            <li v-for="book in booList" :key="book.id">
-                {{ book.name }}
-            </li>
-        </ul>
-        <p>{{ bookCount }}</p>
+    <div id="#app">
+        <h1>Top Page</h1>
+        <p>{{ renderedName }}</p>
+        <router-link to="/book">book</router-link>
     </div>
 </template>
 
 <script>
-//import bookModule from 'shared/store/bookModule';
-
 export default {
-//    asyncData({ store }){
-//        store.registerModule('book', bookModule);
-//        return store.dispatch('book/fetchBookList');
-//    },
-//    destroyed(){
-//        this.$store.unregisterModule('book');
-//    },
-//    computed: {
-//        bookCount(){
-//            return this.$store.state.book.count;
-//        }
-//    }
+    preFetchData({ store, route }){
+        return new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                store.renderedName = 'preFetching is fired in Top Vue!';
+                resolve();
+            }, 500);
+        });
+    },
+    computed: {
+        renderedName() {
+            return this.$store.renderedName;
+        }
+    }
 }
 </script>

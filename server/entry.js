@@ -1,27 +1,30 @@
-//import createApp from 'shared/app';
-//
-//export default context => new Promise((resolve, reject) => {
-//  const { app, router, store } = createApp();
-//
-//  router.push(context.url);
-//
-//  router.onReady(() => {
-//    const matched = router.getMatchedComponents();
-//
-//    if(!matched.length){
-//      return reject({code: 404});
-//    }
-//
-//    Promise.all(matched.map(component => {
-//      if(component.asyncData){
-//        return component.asyncData({
-//          store,
-//          route: router.currentRoute
-//        })
-//      }
-//    })).then(() => {
-//      context.state = store.state;
-//      resolve(app);
-//    }).catch(reject);
-//  }, reject);
-//});
+import createApp from 'shared/createApp';
+
+export default (context) => {
+  return new Promise((resolve, reject) => {
+    const { store, router, app } = createApp();
+    const { url } = context;
+    const { fullPath } = router.resolve(url).route;
+
+    if(url !== fullPath){
+      return reject();
+    }
+
+    router.push(url);
+
+    router.onReady(() => {
+      const matchedComponents = router.getMatchedComponents();
+      if(matchedComponents.length === 0){
+        return reject();
+      }
+
+      Promise.all(matchedComponents.map(({ preFetchData }) => preFetchData && preFetchData({
+        store,
+        route: router.currentRoute
+      }))).then(() => {
+        context.state = store.state;
+        resolve(app);
+      }).catch(reject)
+    }, reject);
+  });
+}

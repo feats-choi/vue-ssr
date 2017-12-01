@@ -1,21 +1,23 @@
 <template>
-    <div>{{ book.title }}</div>
+    <div>
+        <h1>Book Page</h1>
+        <p>{{ renderedName }}</p>
+    </div>
 </template>
 
 <script>
-import { clientTitleMixin } from 'shared/mixin/title';
-
 export default {
-    mixins: [clientTitleMixin],
-    title(){
-        return this.book.title
-    },
-    asyncData({ store, route }){
-        return store.dispatch('fetchItem', route.params.id)
+    preFetchData({ store, route }){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                store.renderedName = 'preFetching is fired in Book Vue!';
+                resolve();
+            }, 500);
+        });
     },
     computed: {
-        book(){
-            return this.$store.state.bookList[this.$route.params.id]
+        renderedName() {
+            return this.$store.renderedName;
         }
     }
 }
